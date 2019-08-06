@@ -1,0 +1,24 @@
+MaxHeaps
+    - Binary Tree
+    - at any node, it's children are guaranteed to be less than or eq to the node
+    - the root of a maxheap will be the true maximum value
+    - a max heap is a partially sorted data structure
+
+Example Problem:
+    - given an array, find the k largest values in the array
+
+MaxHeaps are easier to maintain than BSTs
+
+Our maxheap math:
+    - using a 1-index array
+    - given a parent val at index i:
+        - it's left child is 2i
+        - it's right child is 2i + 1
+    - given a child val at index i:
+        - it's parent is at index Math.floor(i / 2)
+
+You could also:
+    - use a 0-index array
+        - given a parent val at index i
+        - it's left child 2i + 1
+        - it's right child 2i + 2
