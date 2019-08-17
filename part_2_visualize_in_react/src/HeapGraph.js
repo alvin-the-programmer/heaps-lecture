@@ -8,18 +8,29 @@ const OPTIONS = {
     }
   },
   edges: {
-    color: "#000000"
+    color: 'black'
+  },
+  physics: {
+    timestep: 1
   }
 };
 
-const HeapGraph = props => {
-  const array = props.array.map(String);
+const HeapGraph = (props) => {
+  const { array, highlight } = props;
 
   const nodes = [];
   const edges = [];
 
   for (let i = 1; i < array.length; i++) {
-    let node = { id: i, label: array[i] };
+    let node = {
+      id: i,
+      label: String(array[i]),
+      color: {
+        background: i === highlight ? 'LightCoral' : 'CornflowerBlue',
+        border: 'CornflowerBlue'
+      }
+    };
+
     nodes.push(node);
     let leftEdge = { from: i, to: 2 * i };
     let rightEdge = { from: i, to: 2 * i + 1 };
@@ -31,4 +42,4 @@ const HeapGraph = props => {
   return <Graph graph={graph} options={OPTIONS} />;
 };
 
-export default HeapGraph;
+export default React.memo(HeapGraph);

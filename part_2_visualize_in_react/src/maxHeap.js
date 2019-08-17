@@ -8,7 +8,7 @@ class MaxHeap {
   insert(val) {
     const { array } = this;
     array.push(val);
-    this.siftUp(array.length - 1);
+    return this.siftUp(array.length - 1);
   }
 
   siftUp(idx) {
@@ -18,9 +18,16 @@ class MaxHeap {
     let parentIdx = Math.floor(idx / 2);
     let parentVal = array[parentIdx];
 
+    const frame = {
+      array: array.slice(),
+      currentIdx: idx
+    };
+
     if (currentVal > parentVal) {
       [array[idx], array[parentIdx]] = [array[parentIdx], array[idx]];
-      this.siftUp(parentIdx);
+      return [frame, ...this.siftUp(parentIdx)];
+    } else {
+      return [frame];
     }
   }
 }
